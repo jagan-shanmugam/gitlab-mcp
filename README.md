@@ -18,10 +18,13 @@ When using with the Claude App, you need to set up your API key and URLs directl
 
 #### Authentication Methods
 
-The server supports two authentication methods:
+The server supports multiple authentication methods:
 
-1. **Personal Access Token** (traditional method)
-2. **OAuth2** (recommended for better security)
+1. **Personal Access Token** (traditional method - single user)
+2. **OAuth2** (recommended for better security - single user)
+3. **Remote Authorization** (multi-user support via HTTP headers)
+
+> 🚀 **NEW: Multi-User Support!** Run a single server instance that supports multiple users, each with their own GitLab credentials. Perfect for teams, shared dev environments, and SaaS integrations. [See Quick Start Guide](./QUICKSTART_MULTIUSER.md) | [Full Documentation](./MULTI_USER_AUTHENTICATION.md)
 
 #### Using OAuth2 Authentication
 
@@ -287,11 +290,18 @@ When using Streamable HTTP transport, the following endpoints are available:
 
 ### Remote Authorization Setup (Multi-User Support)
 
+> 📚 **For comprehensive documentation, see:**
+> - [**Quick Start Guide**](./QUICKSTART_MULTIUSER.md) - Get up and running in 5 minutes
+> - [**Full Multi-User Authentication Guide**](./MULTI_USER_AUTHENTICATION.md) - Complete reference with security, monitoring, troubleshooting, and advanced configuration
+
 When using `REMOTE_AUTHORIZATION=true`, the MCP server can support multiple users, each with their own GitLab token passed via HTTP headers. This is useful for:
 - Shared MCP server instances where each user needs their own GitLab access
 - IDE integrations that can inject user-specific tokens into MCP requests
+- Team environments with individual GitLab permissions
+- SaaS applications offering GitLab integration
+- CI/CD pipelines with multiple automation accounts
 
-**Setup Example:**
+**Quick Setup Example:**
 
 ```bash
 # Start server with remote authorization
